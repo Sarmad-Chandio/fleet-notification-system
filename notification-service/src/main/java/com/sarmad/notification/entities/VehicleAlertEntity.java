@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "vehicle-alert")
+@Table(name = "vehicle_alert")
 public class VehicleAlertEntity {
 
     @Id

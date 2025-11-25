@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "driver-alert")
+@Table(name = "driver_alert")
 public class DriverAlertEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

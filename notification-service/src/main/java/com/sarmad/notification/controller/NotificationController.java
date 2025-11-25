@@ -1,21 +1,27 @@
 package com.sarmad.notification.controller;
 
+import com.sarmad.notification.dtos.AlertRequestDto;
+import com.sarmad.notification.service.NotificationService;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
+@RequestMapping("/alerts")
 public class NotificationController {
 
-    /*
-    /topic/alerts
+    private NotificationService notificationService;
 
-    /topic/driver-status
+    public ResponseEntity<String> createAlert(@RequestBody AlertRequestDto request) {
+        return ResponseEntity.ok(notificationService.sendAlert(request));
+    }
 
-    /topic/vehicle-alerts/{id}
 
-    Add DB tables:
-    alerts
-    notification_status
-    alert_history
-*/
+
+
+
 
 }
