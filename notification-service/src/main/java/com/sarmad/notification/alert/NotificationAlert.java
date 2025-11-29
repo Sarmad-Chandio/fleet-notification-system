@@ -1,5 +1,6 @@
 package com.sarmad.notification.alert;
 
+import com.sarmad.notification.dtos.AlertRequestDto;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
@@ -23,9 +24,9 @@ public class NotificationAlert {
     //correct and change it later
     @MessageMapping("/sendAlert")//-> default pick url from config : notification-app/sendNotification
     @SendTo("/topic/notificaton")//configutre topic same as config
-    public String sendNotification(String message){
-        System.out.println("message :"+message);
-        return message;
+    public AlertRequestDto sendNotification(AlertRequestDto alertReqMessage){
+        System.out.println("alert Message :"+alertReqMessage);
+        return alertReqMessage;
     }
 
 }
