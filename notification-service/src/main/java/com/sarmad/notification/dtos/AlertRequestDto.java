@@ -4,20 +4,21 @@ import com.sarmad.notification.enums.AlertType;
 import com.sarmad.notification.enums.SeverityType;
 import com.sarmad.notification.enums.StatusType;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AlertRequestDto {
-    @NotBlank(message = "Title is required")
+    @NotNull(message = "Title is required")
     private String title;
     private String message;
-    @NotBlank(message = "type is required")
+    @NotNull(message = "type is required")
     private AlertType type;
-    @NotBlank(message = "severity is required")
+    @NotNull(message = "severity is required")
     private SeverityType severity;
-    @NotBlank(message = "status is required")
+    @NotNull(message = "status is required")
     private StatusType status;
     private Integer driverId;
     private Integer vehicleId;
