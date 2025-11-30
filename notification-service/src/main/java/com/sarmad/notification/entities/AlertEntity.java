@@ -1,5 +1,6 @@
 package com.sarmad.notification.entities;
 
+import com.sarmad.notification.enums.StatusType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -40,7 +41,7 @@ public class AlertEntity {
 
     public AlertEntity() {
         this.createdAt = LocalDateTime.now();
-        this.status = "new";
+        this.status = StatusType.OPEN.name();
     }
 
     public AlertEntity(String title, String message, String type, String severity) {
@@ -48,7 +49,7 @@ public class AlertEntity {
         this.message = message;
         this.type = type;
         this.severity = severity;
-        this.status = "new";
+        this.status = StatusType.OPEN.name();
         this.createdAt = LocalDateTime.now();
     }
 

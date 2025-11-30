@@ -12,6 +12,7 @@ import com.sarmad.notification.repository.DriverAlertRepository;
 import com.sarmad.notification.repository.VehicleAlertRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +23,7 @@ public class NotificationServiceImpl implements NotificationService{
     private AlertRepository alertRepository;
     private DriverAlertRepository driverAlertRepository;
     private VehicleAlertRepository vehicleAlertRepository;
+    private SimpMessagingTemplate messagingTemplate;
 
 
 
@@ -39,18 +41,22 @@ public class NotificationServiceImpl implements NotificationService{
             alertMapper.updateVehicleAlertWithAlert(vehicleAlertEntity,alertEntity);
 
             vehicleAlertRepository.save(vehicleAlertEntity);
+            // Websocket Publish
+            messagingTemplate.convertAndSend("/topic/alerts/vehicle", request);
         } else if (AlertType.DRIVER.equals(request.getType())) {
             DriverAlertEntity driverAlertEntity = alertMapper.toDriverAlertEntity(request);
 
             alertMapper.updateDriverAlertWithAlert(driverAlertEntity,alertEntity);
 
             driverAlertRepository.save(driverAlertEntity);
+            //Websocket Publish
+            messagingTemplate.convertAndSend("/topic/alerts/driver", request);
         }
 
 
 
-        //after it publish notification, mock for now
-        notificationAlert.sendNotification(request);
+        //All alerts stream (for monitoring dashboards)
+        messagingTemplate.convertAndSend("/topic/alerts", request);
 
         return "Notification sent SuccessFully ";
     }

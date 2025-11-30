@@ -22,11 +22,9 @@ public class NotificationAlert {
 */
 
     //correct and change it later
-    @MessageMapping("/sendAlert")//-> default pick url from config : notification-app/sendNotification
-    @SendTo("/topic/notificaton")//configutre topic same as config
-    public AlertRequestDto sendNotification(AlertRequestDto alertReqMessage){
-        System.out.println("alert Message :"+alertReqMessage);
-        return alertReqMessage;
+    @MessageMapping("/alerts")
+    public void handleWebSocketAlert(AlertRequestDto alertReqMessage) {
+        System.out.println("Received WebSocket alert: " + alertReqMessage);
     }
 
 }

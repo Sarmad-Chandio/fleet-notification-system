@@ -19,5 +19,7 @@ public class AlertRequestDto {
     private SeverityType severity;
     @NotBlank(message = "status is required")
     private StatusType status;
+    private Integer driverId;
+    private Integer vehicleId;
 
 }
