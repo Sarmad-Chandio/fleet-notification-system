@@ -6,7 +6,7 @@ import java.time.Instant;
 
 @Data
 public class GpsLocationDto {
-    private Long vehicleId;
+    private Integer vehicleId;
     private double latitude;
     private double longitude;
     private double speed;
